@@ -136,6 +136,13 @@
 
     const cat = mwCategory(article.category);
     document.title = article.title + ' | MediWell';
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonical);
+    }
+    canonical.setAttribute('href', 'https://mediwell-sigma.vercel.app/article.html?id=' + encodeURIComponent(article.id));
     const meta = document.querySelector('meta[name="description"]');
     if (meta) meta.setAttribute('content', article.excerpt);
 
